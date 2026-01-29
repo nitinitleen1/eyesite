@@ -1,6 +1,10 @@
 # Agent Observability Platform
 
-> ⚠️ **UNDER ACTIVE DEVELOPMENT** - This project is in early stages and not yet ready for production use. We're building in public and welcome contributors!
+> ⚠️ **UNDER ACTIVE DEVELOPMENT** - This project is in early stages and not yet ready for production use.  
+> 
+> 🎨 **Vibe Coded** - Built rapidly with AI assistance, driven by a personal vision of what agent observability should be. Code quality is improving iteratively as features stabilize.  
+> 
+> 🚀 **Building in Public** - We're developing openly and welcome contributors to help shape the future of AI agent monitoring!
 
 <div align="center">
 
@@ -50,6 +54,19 @@ Track every AI interaction. Optimize costs. Build better agents.
 **Track Progress**: See [TASKS.md](TASKS.md) | [DEVELOPMENT_SUMMARY.md](DEVELOPMENT_SUMMARY.md)
 
 **Want to Help?** We're building in public! Check [CONTRIBUTING.md](CONTRIBUTING.md) to get started. 🙌
+
+---
+
+## 💭 Project Philosophy
+
+This project is **vibe-coded** - rapidly prototyped with AI assistance and driven by a clear vision of what AI agent observability should be:
+
+- **Developer-First**: Built by someone who actually uses AI agents in production
+- **Opinionated**: Not trying to be everything - focused on what matters for agent monitoring
+- **Iterative Quality**: Ship fast, improve constantly, prioritize functionality over perfection
+- **Community-Driven**: Your feedback shapes the roadmap
+
+Think of this as a **living prototype** evolving into a production tool based on real-world needs.
 
 ---
 
