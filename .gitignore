@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+dist/
+build/
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+vendor/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+data/
+postgres-data/
+clickhouse-data/
+redis-data/
+
+# Build artifacts
+*.tar.gz
+*.zip
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+
+# Next.js
+.next/
+out/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
