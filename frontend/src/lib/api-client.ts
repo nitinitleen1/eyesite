@@ -95,20 +95,39 @@ class ApiClient {
         return this.request('/workspaces', { method: 'GET' });
     }
 
-    // Interactions endpoints
+    // Analytics endpoints (Query Service on port 8002)
+    async getOverview(workspaceUuid: string) {
+        return this.request(`http://localhost:8002/v1/analytics/overview?workspace_uuid=${workspaceUuid}`, {
+            method: 'GET',
+        });
+    }
+
+    async getCosts(workspaceUuid: string) {
+        return this.request(`http://localhost:8002/v1/analytics/costs?workspace_uuid=${workspaceUuid}`, {
+            method: 'GET',
+        });
+    }
+
+    async getProviderStats(workspaceUuid: string) {
+        return this.request(`http://localhost:8002/v1/analytics/providers?workspace_uuid=${workspaceUuid}`, {
+            method: 'GET',
+        });
+    }
+
+    async listInteractions(workspaceUuid: string) {
+        return this.request(`http://localhost:8002/v1/interactions?workspace_uuid=${workspaceUuid}`, {
+            method: 'GET',
+        });
+    }
+
+    // Interactions endpoints (Ingest Service)
     async recordInteraction(data: any) {
-        return this.request('/v1/interactions', {
+        return this.request('http://localhost:8001/v1/interactions', {
             method: 'POST',
             body: JSON.stringify(data),
         });
     }
 
-    async getInteractions(workspaceUuid: string, params?: Record<string, string>) {
-        const query = params ? '?' + new URLSearchParams(params).toString() : '';
-        return this.request(`/workspaces/${workspaceUuid}/interactions${query}`, {
-            method: 'GET',
-        });
-    }
 }
 
 export const apiClient = new ApiClient();
