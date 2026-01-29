@@ -24,16 +24,27 @@ install:
 	@echo "Dependencies installed!"
 
 # Run in development mode
-dev:
-	@echo "Starting development environment..."
-	@echo "Make sure Docker services are running (make docker-up)"
+dev-auth:
+	@echo "Starting auth service..."
 	cd backend/cmd/auth-service && go run .
+
+dev-ingest:
+	@echo "Starting ingest service..."
+	cd backend/cmd/ingest-service && go run .
+
+dev:
+	@echo "Starting all services..."
+	@echo "Run 'make dev-auth' or 'make dev-ingest' to start individual services"
 
 # Build all services
 build:
 	@echo "Building backend services..."
+	mkdir -p bin
 	cd backend/cmd/auth-service && go build -o ../../../bin/auth-service
+	cd backend/cmd/ingest-service && go build -o ../../../bin/ingest-service
 	@echo "Build complete! Binaries in ./bin/"
+	@echo "  - auth-service (port 8000)"
+	@echo "  - ingest-service (port 8001)"
 
 # Run tests
 test:

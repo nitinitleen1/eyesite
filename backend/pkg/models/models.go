@@ -164,3 +164,17 @@ type TokenCount struct {
 func (tc *TokenCount) Calculate() {
 	tc.Total = tc.Input + tc.Output
 }
+
+// Helper functions for UUID handling
+
+// NewUUID generates a new UUID
+func NewUUID() uuid.UUID {
+	return uuid.New()
+}
+
+// ParseUUID parses a UUID string
+func ParseUUID(s string) uuid.UUID {
+	u, _ := uuid.Parse(s)
+	return u
+}
+
