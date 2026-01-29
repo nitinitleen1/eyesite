@@ -1,5 +1,7 @@
 # Agent Observability Platform
 
+> ⚠️ **UNDER ACTIVE DEVELOPMENT** - This project is in early stages and not yet ready for production use. We're building in public and welcome contributors!
+
 <div align="center">
 
 **The Universal Observability Platform for AI Agents**
@@ -13,6 +15,41 @@ Track every AI interaction. Optimize costs. Build better agents.
 [Documentation](#documentation) • [Quick Start](#quick-start) • [Features](#features) • [Contributing](#contributing)
 
 </div>
+
+---
+
+## 🚧 Development Status
+
+**Current Phase**: MVP Foundation (50% Complete)  
+**Last Updated**: January 29, 2026
+
+### ✅ What's Working Now
+
+- **Backend Infrastructure** - Complete Go backend with configuration management
+- **Authentication Service** - User registration, login, JWT tokens
+- **Multi-Provider Support** - OpenAI, Anthropic, Google Gemini fully integrated
+- **Telemetry Ingestion** - Service ready to accept interaction data
+- **Database Layer** - PostgreSQL schema with 15+ tables, indexes, triggers
+- **Docker Environment** - PostgreSQL, Redis, ClickHouse ready to go
+
+### 🚧 In Progress
+
+- **Frontend** - Next.js app (starting now)
+- **Dashboard UI** - Cost tracking, session analytics
+- **TypeScript SDK** - Developer library for integration
+
+### 📋 Coming Soon
+
+- Query service for analytics
+- OAuth integration (Google, GitHub)
+- Advanced dashboards
+- Alerting system
+- Cost forecasting
+- Multi-agent tracking
+
+**Track Progress**: See [TASKS.md](TASKS.md) | [DEVELOPMENT_SUMMARY.md](DEVELOPMENT_SUMMARY.md)
+
+**Want to Help?** We're building in public! Check [CONTRIBUTING.md](CONTRIBUTING.md) to get started. 🙌
 
 ---
 
