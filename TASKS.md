@@ -4,30 +4,30 @@
 
 ### 🔴 High Priority - Core Functionality
 
-- [ ] **Telemetry Ingestion Service**
-  - [ ] Create OpenTelemetry HTTP endpoint
-  - [ ] Implement span/trace parsing
-  - [ ] Store traces and spans in database
-  - [ ] Link spans to interactions
-  - [ ] Add cost calculation on ingestion
-  - [ ] Health check endpoint
+- [x] **Telemetry Ingestion Service**
+  - [x] Create OpenTelemetry HTTP endpoint
+  - [x] Implement span/trace parsing (basic)
+  - [x] Store traces and spans in database
+  - [x] Link spans to interactions  
+  - [x] Add cost calculation on ingestion
+  - [x] Health check endpoint
 
-- [ ] **Frontend Foundation (Next.js)**
-  - [ ] Initialize Next.js 14+ with TypeScript
-  - [ ] Set up Tailwind CSS
-  - [ ] Create authentication pages (login, register)
-  - [ ] Implement API client with axios/fetch
-  - [ ] Add authentication context/provider
-  - [ ] Protected route wrapper
-  - [ ] Layout components
+- [x] **Frontend Foundation (Next.js)**
+  - [x] Initialize Next.js 14+ with TypeScript
+  - [x] Set up Tailwind CSS
+  - [x] Create authentication pages (login, register)
+  - [x] Implement API client with fetch
+  - [x] Add authentication context/provider
+  - [x] Protected route wrapper
+  - [x] Layout components
 
-- [ ] **Dashboard - Phase 1**
-  - [ ] Dashboard shell/layout
-  - [ ] Session list view
-  - [ ] Interaction timeline
-  - [ ] Cost summary widget
-  - [ ] Token usage charts
-  - [ ] Provider distribution chart
+- [x] **Dashboard - Phase 1**
+  - [x] Dashboard shell/layout
+  - [x] Session list view (empty state)
+  - [x] Interaction timeline (empty state)
+  - [x] Cost summary widget
+  - [x] Token usage charts (empty state)
+  - [x] Provider distribution chart (empty state)
 
 - [ ] **Query Service**
   - [ ] Session analytics endpoints
@@ -37,13 +37,13 @@
 
 ### 🟡 Medium Priority - Enhancement
 
-- [ ] **TypeScript SDK**
-  - [ ] Create npm package structure
-  - [ ] Implement OpenTelemetry wrapper
-  - [ ] Add provider proxying
-  - [ ] Create usage examples
-  - [ ] Write SDK documentation
-  - [ ] Publish to npm
+- [x] **TypeScript SDK**
+  - [x] Create npm package structure
+  - [x] Implement OpenTelemetry wrapper
+  - [x] Add provider proxying (OpenAI, Anthropic wrappers)
+  - [x] Create usage examples
+  - [x] Write SDK documentation
+  - [ ] Publish to npm (when ready)
 
 - [ ] **API Key Management (Complete)**
   - [ ] Implement ListAPIKeys handler
@@ -155,11 +155,14 @@
 - [x] Database schema ✅
 - [x] Multi-provider support ✅
 - [x] Docker setup ✅
-- [ ] Telemetry ingestion (In Progress)
-- [ ] Frontend foundation (In Progress)
-- [ ] Basic dashboard (In Progress)
+- [x] Telemetry ingestion ✅
+- [x] Frontend foundation ✅
+- [x] Basic dashboard ✅
+- [x] TypeScript SDK ✅
+- [ ] Query service (Next)
+- [ ] Complete workspace/API key management (Next)
 
-**Completion: 50%**
+**Completion: 75%**
 
 ---
 
