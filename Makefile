@@ -32,9 +32,13 @@ dev-ingest:
 	@echo "Starting ingest service..."
 	cd backend/cmd/ingest-service && go run .
 
+dev-query:
+	@echo "Starting query service..."
+	cd backend/cmd/query-service && go run .
+
 dev:
 	@echo "Starting all services..."
-	@echo "Run 'make dev-auth' or 'make dev-ingest' to start individual services"
+	@echo "Run 'make dev-auth', 'make dev-ingest', or 'make dev-query' to start individual services"
 
 # Build all services
 build:
@@ -42,9 +46,11 @@ build:
 	mkdir -p bin
 	cd backend/cmd/auth-service && go build -o ../../../bin/auth-service
 	cd backend/cmd/ingest-service && go build -o ../../../bin/ingest-service
+	cd backend/cmd/query-service && go build -o ../../../bin/query-service
 	@echo "Build complete! Binaries in ./bin/"
 	@echo "  - auth-service (port 8000)"
 	@echo "  - ingest-service (port 8001)"
+	@echo "  - query-service (port 8002)"
 
 # Run tests
 test:
