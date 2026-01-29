@@ -1,4 +1,4 @@
-# Agent Observability Platform - Task List
+# Eyesite - Task List
 
 ## 🎯 Current Sprint: Core Services & Frontend
 

@@ -120,7 +120,7 @@ func Load() (*Config, error) {
 		JWT: JWTConfig{
 			Secret:          getEnv("JWT_SECRET", generateDefaultSecret()),
 			ExpirationHours: getEnvAsInt("JWT_EXPIRATION_HOURS", 24*7), // 7 days default
-			Issuer:          getEnv("JWT_ISSUER", "agent-observability"),
+			Issuer:          getEnv("JWT_ISSUER", "eyesite"),
 		},
 		OAuth: OAuthConfig{
 			GoogleClientID:     getEnv("GOOGLE_CLIENT_ID", ""),

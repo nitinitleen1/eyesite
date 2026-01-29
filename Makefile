@@ -2,7 +2,7 @@
 
 # Default target
 help:
-	@echo "Agent Observability Platform - Development Commands"
+	@echo "Eyesite - Development Commands"
 	@echo ""
 	@echo "Available targets:"
 	@echo "  install      - Install dependencies"

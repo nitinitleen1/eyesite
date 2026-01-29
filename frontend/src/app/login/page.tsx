@@ -116,7 +116,7 @@ export default function LoginPage() {
 
                 {/* Bottom text */}
                 <p className="text-center text-blue-300/60 text-xs mt-6">
-                    Agent Observability Platform • Track, Optimize, Scale
+                    Eyesite • Track, Optimize, Scale
                 </p>
             </div>
         </div>

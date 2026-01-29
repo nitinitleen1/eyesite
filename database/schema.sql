@@ -1,4 +1,4 @@
--- Agent Observability Platform Database Schema
+-- Eyesite Database Schema
 -- PostgreSQL 16+
 
 -- Enable UUID extension

@@ -1,8 +1,8 @@
-# Agent Observability Platform
+# Eyesite
 
 > ⚠️ **UNDER ACTIVE DEVELOPMENT** - This project is in early stages and not yet ready for production use.  
 > 
-> 🎨 **Vibe Coded** - Built rapidly with AI assistance, driven by a personal vision of what agent observability should be. Code quality is improving iteratively as features stabilize.  
+> 🎨 **Vibe Coded** - Built rapidly with AI assistance, driven by a personal vision of what Eyesite should be. Code quality is improving iteratively as features stabilize.  
 > 
 > 🚀 **Building in Public** - We're developing openly and welcome contributors to help shape the future of AI agent monitoring!
 
@@ -59,7 +59,7 @@ Track every AI interaction. Optimize costs. Build better agents.
 
 ## 💭 Project Philosophy
 
-This project is **vibe-coded** - rapidly prototyped with AI assistance and driven by a clear vision of what AI agent observability should be:
+This project is **vibe-coded** - rapidly prototyped with AI assistance and driven by a clear vision of what AI Eyesite should be:
 
 - **Developer-First**: Built by someone who actually uses AI agents in production
 - **Opinionated**: Not trying to be everything - focused on what matters for agent monitoring
@@ -72,7 +72,7 @@ Think of this as a **living prototype** evolving into a production tool based on
 
 ## 🎯 Overview
 
-Agent Observability Platform is an **open-source, production-ready observability platform** specifically designed for AI agents and LLM applications. It provides comprehensive monitoring, analytics, and optimization tools for modern AI systems.
+Eyesite is an **open-source, production-ready observability platform** specifically designed for AI agents and LLM applications. It provides comprehensive monitoring, analytics, and optimization tools for modern AI systems.
 
 ### Why This Platform?
 

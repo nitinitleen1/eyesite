@@ -1,6 +1,6 @@
 # Eyesite Frontend
 
-React + Next.js 14 frontend for the Agent Observability Platform.
+React + Next.js 14 frontend for the Eyesite.
 
 ## Development
 

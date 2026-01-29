@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Eyesite - Agent Observability Platform",
+  title: "Eyesite - Eyesite",
   description: "Track, optimize, and scale your AI agents",
 };
 

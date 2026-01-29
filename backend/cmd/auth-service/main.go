@@ -13,8 +13,8 @@ import (
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 
-	"github.com/agent-observability/platform/backend/pkg/config"
-	"github.com/agent-observability/platform/backend/pkg/database"
+	"github.com/eyesite/platform/backend/pkg/config"
+	"github.com/eyesite/platform/backend/pkg/database"
 )
 
 func main() {

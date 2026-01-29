@@ -1,6 +1,6 @@
 # @eyesite/sdk
 
-TypeScript/JavaScript SDK for the Eyesite Agent Observability Platform.
+TypeScript/JavaScript SDK for the Eyesite Eyesite.
 
 ## Installation
 

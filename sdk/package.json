@@ -1,7 +1,7 @@
 {
   "name": "@eyesite/sdk",
   "version": "0.1.0",
-  "description": "TypeScript SDK for Eyesite Agent Observability Platform",
+  "description": "TypeScript SDK for Eyesite Eyesite",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

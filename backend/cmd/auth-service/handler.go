@@ -15,10 +15,10 @@ import (
 	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/agent-observability/platform/backend/internal/errors"
-	"github.com/agent-observability/platform/backend/pkg/config"
-	"github.com/agent-observability/platform/backend/pkg/database"
-	"github.com/agent-observability/platform/backend/pkg/models"
+	"github.com/eyesite/platform/backend/internal/errors"
+	"github.com/eyesite/platform/backend/pkg/config"
+	"github.com/eyesite/platform/backend/pkg/database"
+	"github.com/eyesite/platform/backend/pkg/models"
 )
 
 // AuthHandler handles authentication requests

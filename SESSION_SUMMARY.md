@@ -1,4 +1,4 @@
-# 🎉 Session Complete - Agent Observability Platform
+# 🎉 Session Complete - Eyesite
 
 ## 📊 What We Built Today
 
@@ -217,7 +217,7 @@ cd frontend && npm run dev
 
 This project is **intentionally** built with:
 - **AI Assistance**: Leveraging AI to prototype rapidly
-- **Vision-Driven**: Clear idea of what agent observability should be
+- **Vision-Driven**: Clear idea of what Eyesite should be
 - **Iterative Quality**: Ship fast, improve constantly
 - **Public Building**: Transparent development process
 
