@@ -1,4 +1,4 @@
-# Contributing to Agent Observability Platform
+# Contributing to Eyesite
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to the project.
 
@@ -287,4 +287,4 @@ Contributors will be recognized in:
 - Release notes
 - Project documentation
 
-Thank you for contributing to Agent Observability Platform! 🎉
+Thank you for contributing to Eyesite! 🎉

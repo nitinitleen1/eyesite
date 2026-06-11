@@ -13,8 +13,8 @@ import (
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 
-	"github.com/agent-observability/platform/backend/pkg/config"
-	"github.com/agent-observability/platform/backend/pkg/database"
+	"github.com/eyesite/platform/backend/pkg/config"
+	"github.com/eyesite/platform/backend/pkg/database"
 )
 
 func main() {
@@ -88,7 +88,7 @@ func main() {
 	// Configure HTTP server
 	server := &http.Server{
 		Addr:         fmt.Sprintf("%s:%d", cfg.Server.Host, cfg.Server.Port),
-		Handler:      corsMiddleware(router, cfg.FRONTEND_URL),
+		Handler:      corsMiddleware(router, cfg.Server.FrontendURL),
 		ReadTimeout:  cfg.Server.ReadTimeout,
 		WriteTimeout: cfg.Server.WriteTimeout,
 	}

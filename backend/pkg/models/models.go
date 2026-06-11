@@ -26,6 +26,7 @@ type Workspace struct {
 	UUID      uuid.UUID `json:"uuid" db:"uuid"`
 	Name      string    `json:"name" db:"name"`
 	OwnerUUID uuid.UUID `json:"owner_uuid" db:"owner_uuid"`
+	Slug      string    `json:"slug" db:"slug"`
 	CreatedAt time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
 }

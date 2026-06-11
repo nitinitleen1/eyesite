@@ -1,4 +1,4 @@
--- Agent Observability Platform Database Schema
+-- Eyesite Database Schema
 -- PostgreSQL 16+
 
 -- Enable UUID extension
@@ -68,7 +68,7 @@ CREATE TABLE main.api_keys (
     user_uuid UUID NOT NULL REFERENCES main.users(uuid) ON DELETE CASCADE,
     workspace_uuid UUID NOT NULL REFERENCES main.workspaces(uuid) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
-    key_hash VARCHAR(255) NOT NULL UNIQUE, -- bcrypt hash of the key
+    key_hash VARCHAR(255) NOT NULL UNIQUE, -- SHA-256 hex hash of the key (deterministic for ingest lookup)
     key_preview VARCHAR(16) NOT NULL, -- First 8 chars for display
     scopes TEXT[] DEFAULT ARRAY['read', 'write'], -- Permissions
     last_used_at TIMESTAMP WITH TIME ZONE,

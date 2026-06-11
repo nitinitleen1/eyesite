@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strings"
 )
 
 // AnthropicProvider implements the Provider interface for Anthropic Claude

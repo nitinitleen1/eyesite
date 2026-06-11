@@ -10,7 +10,7 @@ import (
 	_ "github.com/lib/pq" // PostgreSQL driver
 	"go.uber.org/zap"
 
-	"github.com/agent-observability/platform/backend/pkg/config"
+	"github.com/eyesite/platform/backend/pkg/config"
 )
 
 // DB wraps the SQL database with additional functionality

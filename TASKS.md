@@ -1,64 +1,66 @@
-# Agent Observability Platform - Task List
+# Eyesite - Task List
 
 ## 🎯 Current Sprint: Core Services & Frontend
 
 ### 🔴 High Priority - Core Functionality
 
-- [ ] **Telemetry Ingestion Service**
-  - [ ] Create OpenTelemetry HTTP endpoint
-  - [ ] Implement span/trace parsing
-  - [ ] Store traces and spans in database
-  - [ ] Link spans to interactions
-  - [ ] Add cost calculation on ingestion
-  - [ ] Health check endpoint
+- [x] **Telemetry Ingestion Service**
+  - [x] Create OpenTelemetry HTTP endpoint
+  - [x] Implement span/trace parsing (basic)
+  - [x] Store traces and spans in database
+  - [x] Link spans to interactions  
+  - [x] Add cost calculation on ingestion
+  - [x] Health check endpoint
 
-- [ ] **Frontend Foundation (Next.js)**
-  - [ ] Initialize Next.js 14+ with TypeScript
-  - [ ] Set up Tailwind CSS
-  - [ ] Create authentication pages (login, register)
-  - [ ] Implement API client with axios/fetch
-  - [ ] Add authentication context/provider
-  - [ ] Protected route wrapper
-  - [ ] Layout components
+- [x] **Frontend Foundation (Next.js)**
+  - [x] Initialize Next.js 14+ with TypeScript
+  - [x] Set up Tailwind CSS
+  - [x] Create authentication pages (login, register)
+  - [x] Implement API client with fetch
+  - [x] Add authentication context/provider
+  - [x] Protected route wrapper
+  - [x] Layout components
 
-- [ ] **Dashboard - Phase 1**
-  - [ ] Dashboard shell/layout
-  - [ ] Session list view
-  - [ ] Interaction timeline
-  - [ ] Cost summary widget
-  - [ ] Token usage charts
-  - [ ] Provider distribution chart
+- [x] **Dashboard - Phase 1**
+  - [x] Dashboard shell/layout
+  - [x] Session list view (empty state)
+  - [x] Interaction timeline (empty state)
+  - [x] Cost summary widget
+  - [x] Token usage charts (empty state)
+  - [x] Provider distribution chart (empty state)
 
-- [ ] **Query Service**
-  - [ ] Session analytics endpoints
-  - [ ] Interaction search/filter
-  - [ ] Cost aggregation queries
-  - [ ] Export functionality (CSV, JSON)
+- [x] **Query Service**
+  - [x] Session analytics endpoints
+  - [x] Interaction search/filter
+  - [x] Cost aggregation queries
+  - [x] Export functionality (CSV, JSON)
+  - [x] JWT auth + workspace membership checks on all endpoints
 
 ### 🟡 Medium Priority - Enhancement
 
-- [ ] **TypeScript SDK**
-  - [ ] Create npm package structure
-  - [ ] Implement OpenTelemetry wrapper
-  - [ ] Add provider proxying
-  - [ ] Create usage examples
-  - [ ] Write SDK documentation
-  - [ ] Publish to npm
+- [x] **TypeScript SDK**
+  - [x] Create npm package structure
+  - [x] Implement OpenTelemetry wrapper
+  - [x] Add provider proxying (OpenAI, Anthropic wrappers)
+  - [x] Create usage examples
+  - [x] Write SDK documentation
+  - [ ] Publish to npm (when ready)
 
-- [ ] **API Key Management (Complete)**
-  - [ ] Implement ListAPIKeys handler
-  - [ ] Implement CreateAPIKey handler
-  - [ ] Implement RevokeAPIKey handler
+- [x] **API Key Management (Complete)**
+  - [x] Implement ListAPIKeys handler
+  - [x] Implement CreateAPIKey handler
+  - [x] Implement RevokeAPIKey handler
   - [ ] Add API key rotation
-  - [ ] API key usage tracking
+  - [x] API key usage tracking (last_used_at on ingest)
+  - [x] API key enforcement on ingest service (X-API-Key, revocation/expiry honored)
 
-- [ ] **Workspace Management (Complete)**
-  - [ ] ListWorkspaces handler
-  - [ ] CreateWorkspace handler
-  - [ ] UpdateWorkspace handler
-  - [ ] DeleteWorkspace handler
+- [x] **Workspace Management (Complete)**
+  - [x] ListWorkspaces handler
+  - [x] CreateWorkspace handler
+  - [x] UpdateWorkspace handler
+  - [x] DeleteWorkspace handler
   - [ ] Member invitation system
-  - [ ] Role-based permissions
+  - [x] Role-based permissions (owner/admin checks on update, delete, key revoke)
 
 - [ ] **Provider Enhancements**
   - [ ] Add more providers (Cohere, Mistral, etc.)
@@ -155,20 +157,25 @@
 - [x] Database schema ✅
 - [x] Multi-provider support ✅
 - [x] Docker setup ✅
-- [ ] Telemetry ingestion (In Progress)
-- [ ] Frontend foundation (In Progress)
-- [ ] Basic dashboard (In Progress)
+- [x] Telemetry ingestion ✅
+- [x] Frontend foundation ✅
+- [x] Basic dashboard ✅
+- [x] TypeScript SDK ✅
+- [x] Query service ✅
+- [x] Complete workspace/API key management ✅
+- [x] Dashboard wired to real workspaces (sessions, API keys, settings UI) ✅
+- [x] Sessions end-to-end (SDK createSession → ingest → dashboard) ✅
 
-**Completion: 50%**
-
----
-
-## 🎯 Next 3 Tasks (Immediate)
-
-1. **Create Telemetry Ingestion Service** - Start accepting OpenTelemetry data
-2. **Initialize Next.js Frontend** - Set up authentication and layout
-3. **Build Session Dashboard** - First visual interface for users
+**MVP complete.** Remaining work is post-MVP (OAuth, refresh tokens, WebSockets, member invitations, API key rotation, tests, CI/CD).
 
 ---
 
-*Updated: 2026-01-29 21:30*
+## 🎯 Next 3 Tasks (Post-MVP)
+
+1. **OAuth flows** - Google/GitHub login (handlers are routed but return 501)
+2. **Refresh tokens** - Real refresh token issuance/rotation (currently mirrors the access token)
+3. **Tests + CI** - Unit/integration tests and GitHub Actions
+
+---
+
+*Updated: 2026-06-12*

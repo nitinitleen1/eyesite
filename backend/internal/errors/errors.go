@@ -52,9 +52,7 @@ func New(code, message string, statusCode int) *AppError {
 	}
 }
 
-// Wrap wraps an
-
- existing error with additional context
+// Wrap wraps an existing error with additional context
 func Wrap(err error, code, message string, statusCode int) *AppError {
 	return &AppError{
 		Code:       code,
