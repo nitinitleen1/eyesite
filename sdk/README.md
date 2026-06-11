@@ -1,30 +1,38 @@
 # @eyesite/sdk
 
-TypeScript/JavaScript SDK for the Eyesite Eyesite.
+TypeScript/JavaScript SDK for Eyesite, the open-source observability platform for AI agents.
 
 ## Installation
 
+> **Note:** not yet published to npm. Install from this repo for now:
+
+```bash
+# from your project
+npm install /path/to/eyesite/sdk
+```
+
+Once published:
+
 ```bash
 npm install @eyesite/sdk
-# or
-yarn add @eyesite/sdk
-# or
-pnpm add @eyesite/sdk
 ```
+
+## Authentication
+
+Create an API key in the Eyesite dashboard (**Dashboard → API Keys**). The key is bound to a workspace — everything the SDK records lands in that workspace, and the ingest service rejects revoked or expired keys.
 
 ## Quick Start
 
 ```typescript
 import { Eyesite } from '@eyesite/sdk';
 
-// Initialize the SDK
+// Initialize the SDK — the API key determines the workspace
 const eyesite = new Eyesite({
   apiKey: process.env.EYESITE_API_KEY!,
-  endpoint: 'http://localhost:8001', // Optional, defaults to localhost
-  workspaceUuid: 'your-workspace-uuid',
+  endpoint: 'http://localhost:8001', // Optional, defaults to localhost ingest service
 });
 
-// Create a session
+// Create a session (server-side; returns the session UUID)
 const sessionId = await eyesite.createSession('My Agent Session');
 
 // Record an interaction manually
@@ -50,7 +58,6 @@ import OpenAI from 'openai';
 
 const eyesite = new Eyesite({
   apiKey: process.env.EYESITE_API_KEY!,
-  workspaceUuid: 'your-workspace-uuid',
 });
 
 const openai = new OpenAI({
@@ -77,7 +84,6 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const eyesite = new Eyesite({
   apiKey: process.env.EYESITE_API_KEY!,
-  workspaceUuid: 'your-workspace-uuid',
 });
 
 const anthropic = new Anthropic({
@@ -118,11 +124,11 @@ await eyesite.track(
 
 ```typescript
 interface EyesiteConfig {
-  apiKey: string; // Required: Your API key from Eyesite dashboard
-  endpoint?: string; // Optional: API endpoint (default: http://localhost:8001)
-  workspaceUuid?: string; // Optional: Workspace UUID
-  sessionUuid?: string; // Optional: Session UUID
-  autoCapture?: boolean; // Optional: Auto-capture wrapped calls (default: true)
+  apiKey: string; // Required: API key from the Eyesite dashboard (determines workspace)
+  endpoint?: string; // Optional: ingest service URL (default: http://localhost:8001)
+  workspaceUuid?: string; // Optional: must match the key's workspace if provided
+  sessionUuid?: string; // Optional: existing session UUID to append to
+  autoCapture?: boolean; // Optional: auto-capture wrapped calls (default: true)
 }
 ```
 
