@@ -1,321 +1,196 @@
 # Eyesite
 
-> ⚠️ **UNDER ACTIVE DEVELOPMENT** - This project is in early stages and not yet ready for production use.  
-> 
-> 🎨 **Vibe Coded** - Built rapidly with AI assistance, driven by a personal vision of what Eyesite should be. Code quality is improving iteratively as features stabilize.  
-> 
-> 🚀 **Building in Public** - We're developing openly and welcome contributors to help shape the future of AI agent monitoring!
-
 <div align="center">
 
-**The Universal Observability Platform for AI Agents**
+**Open-Source Observability for AI Agents**
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Go Version](https://img.shields.io/badge/go-1.21+-00ADD8?logo=go)](https://go.dev/)
-[![Next.js](https://img.shields.io/badge/next.js-14+-black?logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/next.js-15-black?logo=next.js)](https://nextjs.org/)
 
 Track every AI interaction. Optimize costs. Build better agents.
 
-[Documentation](#documentation) • [Quick Start](#quick-start) • [Features](#features) • [Contributing](#contributing)
+[Quick Start](#-quick-start) • [Features](#-features) • [Architecture](#%EF%B8%8F-architecture) • [Roadmap](#-roadmap) • [Contributing](#-contributing)
 
 </div>
 
 ---
 
-## 🚧 Development Status
+## 📊 Status
 
-**Current Phase**: MVP Foundation (50% Complete)  
-**Last Updated**: January 29, 2026
+**MVP complete** (June 2026). Core platform works end-to-end: register → create API key → instrument your agent with the SDK → see sessions, costs, and analytics in the dashboard.
 
-### ✅ What's Working Now
-
-- **Backend Infrastructure** - Complete Go backend with configuration management
-- **Authentication Service** - User registration, login, JWT tokens
-- **Multi-Provider Support** - OpenAI, Anthropic, Google Gemini fully integrated
-- **Telemetry Ingestion** - Service ready to accept interaction data
-- **Database Layer** - PostgreSQL schema with 15+ tables, indexes, triggers
-- **Docker Environment** - PostgreSQL, Redis, ClickHouse ready to go
-
-### 🚧 In Progress
-
-- **Frontend** - Next.js app (starting now)
-- **Dashboard UI** - Cost tracking, session analytics
-- **TypeScript SDK** - Developer library for integration
-
-### 📋 Coming Soon
-
-- Query service for analytics
-- OAuth integration (Google, GitHub)
-- Advanced dashboards
-- Alerting system
-- Cost forecasting
-- Multi-agent tracking
-
-**Track Progress**: See [TASKS.md](TASKS.md) | [DEVELOPMENT_SUMMARY.md](DEVELOPMENT_SUMMARY.md)
-
-**Want to Help?** We're building in public! Check [CONTRIBUTING.md](CONTRIBUTING.md) to get started. 🙌
-
----
-
-## 💭 Project Philosophy
-
-This project is **vibe-coded** - rapidly prototyped with AI assistance and driven by a clear vision of what AI Eyesite should be:
-
-- **Developer-First**: Built by someone who actually uses AI agents in production
-- **Opinionated**: Not trying to be everything - focused on what matters for agent monitoring
-- **Iterative Quality**: Ship fast, improve constantly, prioritize functionality over perfection
-- **Community-Driven**: Your feedback shapes the roadmap
-
-Think of this as a **living prototype** evolving into a production tool based on real-world needs.
-
----
-
-## 🎯 Overview
-
-Eyesite is an **open-source, production-ready observability platform** specifically designed for AI agents and LLM applications. It provides comprehensive monitoring, analytics, and optimization tools for modern AI systems.
-
-### Why This Platform?
-
-- 🌐 **Universal Provider Support** - Works with OpenAI, Anthropic, Google, Azure, AWS Bedrock, and more
-- 🤖 **Multi-Agent Tracking** - Visualize complex agent workflows and hierarchies
-- 💰 **Intelligent Cost Management** - Track, forecast, and optimize AI spending
-- 📊 **Deep Analytics** - A/B testing, custom metrics, and business insights
-- 🔒 **Enterprise Security** - PII detection, compliance tools, audit logs
-- 🔌 **Extensible** - Plugin system for custom integrations
-- 🚀 **Production Ready** - Built with Go for performance and reliability
+This project is **vibe-coded** — rapidly built with AI assistance and reviewed/hardened iteratively. It is suitable for self-hosted development and alpha use, not yet battle-tested for production. See [TASKS.md](TASKS.md) for the full task list and [Roadmap](#-roadmap) for what's next.
 
 ## ✨ Features
 
-### Core Capabilities
+### Working today
 
-- **OpenTelemetry Compliant** - Standards-based telemetry ingestion
-- **Multi-Tenant Architecture** - Secure workspace isolation
-- **Real-Time Dashboards** - Live metrics and beautiful visualizations
-- **Cost Attribution** - Track spending by project, agent, or user
-- **Advanced Alerting** - Multi-channel notifications (Slack, email, webhooks)
-- **Full-Text Search** - Search across all prompts and responses
-- **Team Collaboration** - RBAC, shared dashboards, comments
+- **Multi-provider cost tracking** — OpenAI, Anthropic, Google Gemini pricing built in; cost computed per interaction at ingest time
+- **TypeScript SDK** — wrap your OpenAI/Anthropic client in two lines; every call is tracked automatically ([sdk/](sdk/))
+- **Sessions** — group interactions per agent run; drill into any session from the dashboard
+- **Analytics dashboard** — totals, provider/model breakdown, cost over time, token usage (Next.js + Tailwind)
+- **Search & export** — full-text search across prompts/responses; CSV/JSON export
+- **Multi-tenant workspaces** — workspace isolation enforced on every query; owner/admin/developer/viewer roles
+- **API keys** — scoped per workspace, SHA-256 hashed at rest, revocable, expiry + last-used tracking; enforced on all ingest endpoints
+- **OpenTelemetry ingestion** — trace/span endpoints storing into a dedicated telemetry schema
+- **JWT auth** — email/password registration and login; all dashboard APIs require a valid token
 
-### Supported Providers
+### Provider support
 
-| Provider | Status | Models |
-|----------|--------|--------|
-| OpenAI | ✅ Ready | GPT-4, GPT-3.5, Embeddings |
-| Anthropic | ✅ Ready | Claude 3 (Opus, Sonnet, Haiku) |
-| Google | ✅ Ready | Gemini Pro, Gemini Ultra |
-| Azure OpenAI | 🚧 Coming Soon | All Azure OpenAI models |
-| AWS Bedrock | 🚧 Coming Soon | Claude, Llama, Titan |
-| Local Models | 🚧 Coming Soon | Ollama, LM Studio |
-
-### Framework Integrations
-
-- **LangChain** - Native instrumentation
-- **LlamaIndex** - Query engine tracking
-- **CrewAI** - Multi-agent workflows
-- **AutoGPT** - Goal-based agents
-- **Custom** - OpenTelemetry SDK
+| Provider | Status | Models priced |
+|----------|--------|---------------|
+| OpenAI | ✅ Ready | GPT-4, GPT-4 Turbo, GPT-3.5 Turbo |
+| Anthropic | ✅ Ready | Claude 3 Opus, Sonnet, Haiku |
+| Google | ✅ Ready | Gemini Pro, Gemini Pro Vision |
+| Others | 📋 Planned | Azure OpenAI, AWS Bedrock, Ollama |
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Go 1.21+** for backend services
-- **Node.js 20+** for frontend
-- **Docker** and **Docker Compose** for local development
-- **PostgreSQL 16+** (or use Docker)
+- **Go 1.21+**, **Node.js 20+**, **Docker** + **Docker Compose**
 
-### Installation
+### Run the platform
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/agent-observability.git
-cd agent-observability
+git clone https://github.com/nitinitleen1/eyesite.git
+cd eyesite
 
-# Start infrastructure (PostgreSQL, Redis, ClickHouse)
-docker-compose up -d
+# 1. Start infrastructure (PostgreSQL, Redis, ClickHouse, Adminer)
+make docker-up
 
-# Start backend services
-cd backend
-go mod download
-make run-services
+# 2. Create the database schema
+make migrate
 
-# Start frontend (in another terminal)
-cd frontend
-npm install
-npm run dev
+# 3. Start the three backend services (separate terminals)
+make dev-auth     # auth service    → :8000
+make dev-ingest   # ingest service  → :8001
+make dev-query    # query service   → :8002
+
+# 4. Start the frontend
+cd frontend && npm install && npm run dev   # → :3000
 ```
 
-The platform will be available at:
-- **Frontend**: http://localhost:3000
-- **API**: http://localhost:8000
-- **Telemetry Ingestion**: http://localhost:8000/v1/traces
+Open http://localhost:3000, register an account (a default workspace is created automatically), then create an API key in **Dashboard → API Keys**.
 
-### Using the SDK
-
-**JavaScript/TypeScript:**
+### Instrument your agent
 
 ```typescript
-import { AgentObs } from '@agent-obs/sdk-js';
+import { Eyesite } from '@eyesite/sdk';
+import OpenAI from 'openai';
 
-const obs = new AgentObs({
-  apiKey: process.env.AGENT_OBS_API_KEY,
-  endpoint: 'http://localhost:8000',
-});
+const eyesite = new Eyesite({ apiKey: process.env.EYESITE_API_KEY! });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// Track an LLM call
-await obs.track('chat-completion', async () => {
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4',
-    messages: [{ role: 'user', content: 'Hello!' }],
-  });
-  return response;
-}, {
-  provider: 'openai',
+eyesite.wrapOpenAI(openai);                    // every call now tracked
+await eyesite.createSession('My agent run');   // optional: group calls
+
+const response = await openai.chat.completions.create({
   model: 'gpt-4',
-  user: 'user-123',
+  messages: [{ role: 'user', content: 'Hello!' }],
 });
 ```
 
-**Python:**
-
-```python
-from agent_obs import AgentObs
-
-obs = AgentObs(
-    api_key=os.getenv("AGENT_OBS_API_KEY"),
-    endpoint="http://localhost:8000"
-)
-
-# Track an LLM call
-with obs.track("chat-completion", provider="openai", model="gpt-4"):
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": "Hello!"}]
-    )
-```
-
-## 📖 Documentation
-
-- [Architecture Overview](docs/architecture.md)
-- [API Reference](docs/api-reference.md)
-- [SDK Documentation](docs/sdk-guide.md)
-- [Self-Hosting Guide](docs/self-hosting.md)
-- [Contributing Guidelines](CONTRIBUTING.md)
+See [sdk/README.md](sdk/README.md) for Anthropic wrapping, manual tracking, and configuration. The SDK is not yet published to npm — install it from `sdk/` locally.
 
 ## 🏗️ Architecture
 
+Three Go microservices over PostgreSQL, with a Next.js frontend:
+
 ```
-┌─────────────────────────────────────────┐
-│         Frontend (Next.js)              │
-│    React, TypeScript, Tailwind          │
-└─────────────────┬───────────────────────┘
-                  │
-┌─────────────────▼───────────────────────┐
-│         API Gateway (Go)                │
-│    Rate Limiting, Auth, Routing         │
-└─────────────────┬───────────────────────┘
-                  │
-      ┌───────────┼───────────┐
-      │           │           │
-┌─────▼──────┐┌──▼─────┐┌───▼────────┐
-│Auth Service││Ingest  ││Query       │
-│   (Go)     ││Service ││Service     │
-│            ││  (Go)  ││  (Go)      │
-└─────┬──────┘└──┬─────┘└───┬────────┘
-      │          │           │
-      └──────────┼───────────┘
-                 │
-┌────────────────▼────────────────────────┐
-│        Data Layer                       │
-│  ┌──────────┐  ┌────────┐  ┌────────┐  │
-│  │PostgreSQL│  │ Click- │  │ Redis  │  │
-│  │          │  │ House  │  │        │  │
-│  └──────────┘  └────────┘  └────────┘  │
-└─────────────────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│          Frontend (Next.js)  :3000           │
+│        React, TypeScript, Tailwind           │
+└──────┬──────────────────────────┬────────────┘
+       │ JWT                      │ JWT
+┌──────▼───────┐          ┌───────▼────────┐
+│ Auth Service │          │ Query Service  │
+│    :8000     │          │     :8002      │
+│ users, work- │          │ analytics,     │
+│ spaces, keys │          │ sessions,      │
+└──────┬───────┘          │ search, export │
+       │                  └───────┬────────┘
+       │   ┌──────────────┐       │
+ SDK ──┼──▶│Ingest Service│       │
+ X-API │   │    :8001     │       │
+ -Key  │   │ interactions,│       │
+       │   │ OTel traces  │       │
+       │   └──────┬───────┘       │
+┌──────▼──────────▼───────────────▼────────────┐
+│                PostgreSQL                     │
+│   main (users/workspaces/keys)                │
+│   spotlight (sessions/interactions)           │
+│   telemetry (traces/spans)                    │
+└───────────────────────────────────────────────┘
 ```
+
+**Auth model:** browsers authenticate with JWT (auth + query services); SDKs authenticate with `X-API-Key` (ingest service). The ingest service derives the workspace from the key — a key can only write to its own workspace. Redis and ClickHouse run in Docker but are not yet on the hot path (see Roadmap).
+
+### Project structure
+
+```
+eyesite/
+├── backend/
+│   ├── cmd/                # auth-service, ingest-service, query-service
+│   ├── pkg/                # config, database, models, providers
+│   └── internal/errors/    # standardized error types
+├── frontend/src/
+│   ├── app/                # landing, login, register, dashboard
+│   ├── contexts/           # auth context
+│   └── lib/                # API client
+├── sdk/                    # TypeScript SDK (@eyesite/sdk)
+├── database/schema.sql     # full PostgreSQL schema
+├── docker-compose.yml      # PostgreSQL, Redis, ClickHouse, Adminer
+└── Makefile                # dev commands (run `make help`)
+```
+
+## 🗺️ Roadmap
+
+- **OAuth** — Google/GitHub login (routes exist, return 501)
+- **Refresh tokens** — real rotation (currently mirrors the access token)
+- **Tests + CI** — unit/integration tests, GitHub Actions
+- **Member invitations** — invite users to workspaces (roles already enforced)
+- **API key rotation**
+- **Real-time dashboards** — WebSocket updates
+- **ClickHouse pipeline** — high-volume analytics
+- **More providers** — Azure OpenAI, Bedrock, Ollama; tiktoken-based counting
+- **Alerting** — cost/error thresholds, Slack/email/webhooks
+- **npm publish** of the SDK
 
 ## 🛠️ Development
 
-### Project Structure
-
-```
-agent-observability/
-├── backend/                 # Go backend services
-│   ├── cmd/                # Service entry points
-│   ├── pkg/                # Shared packages
-│   └── internal/           # Internal utilities
-├── frontend/               # Next.js frontend
-│   ├── app/               # App Router pages
-│   ├── components/        # React components
-│   └── lib/               # Utilities
-├── database/              # Database schemas
-│   ├── migrations/        # SQL migrations
-│   └── seeds/            # Seed data
-├── docker/               # Docker configurations
-├── docs/                 # Documentation
-└── scripts/              # Build and deployment scripts
-```
-
-### Running Tests
-
 ```bash
-# Backend tests
-cd backend
-make test
-
-# Frontend tests
-cd frontend
-npm test
-
-# E2E tests
-npm run test:e2e
+make help        # all commands
+make build       # build the three services into ./bin
+make test        # go test ./...
+make lint        # golangci-lint
 ```
 
-### Building for Production
-
-```bash
-# Build all services
-make build
-
-# Build Docker images
-make docker-build
-
-# Deploy to Kubernetes
-kubectl apply -f k8s/
-```
+Branching: active development happens on `develop`; `main` holds stable releases. See [BRANCHING.md](BRANCHING.md).
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+We're building in public — contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch from `develop` (`git checkout -b feature/amazing-feature`)
+3. Commit your changes
+4. Open a Pull Request against `develop`
 
 ## 📜 License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+Apache License 2.0 — see [LICENSE](LICENSE).
 
 ## 🙏 Acknowledgments
 
-Inspired by [Shinzo](https://github.com/shinzo-project/shinzo) - An excellent OpenTelemetry-based observability platform.
-
-Built with:
-- [OpenTelemetry](https://opentelemetry.io/) - Observability framework
-- [Go](https://go.dev/) - Backend services
-- [Next.js](https://nextjs.org/) - Frontend framework
-- [ClickHouse](https://clickhouse.com/) - Analytics database
-- [Radix UI](https://www.radix-ui.com/) - UI components
+Inspired by [Shinzo](https://github.com/shinzo-project/shinzo). Built with [Go](https://go.dev/), [Next.js](https://nextjs.org/), [OpenTelemetry](https://opentelemetry.io/), and [PostgreSQL](https://www.postgresql.org/).
 
 ## 📞 Support
 
-- **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/agent-observability/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/agent-observability/discussions)
-- **Discord**: [Join our community](https://discord.gg/agent-obs)
+- **Issues**: [GitHub Issues](https://github.com/nitinitleen1/eyesite/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/nitinitleen1/eyesite/discussions)
 
 ---
 
-Made with ❤️ for the AI developer community
+**Eyesite** — See everything your AI agents do. 👁️

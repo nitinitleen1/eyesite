@@ -24,30 +24,32 @@ Thank you for your interest in contributing! This document provides guidelines a
 1. **Fork and clone the repository**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/agent-observability.git
-cd agent-observability
+git clone https://github.com/YOUR_USERNAME/eyesite.git
+cd eyesite
 ```
 
 2. **Start development environment**
 
 ```bash
-# Start databases
-docker-compose up -d
+# Start databases and create the schema
+make docker-up
+make migrate
 
-# Backend setup
-cd backend
-go mod download
-make dev
+# Backend services (separate terminals)
+make dev-auth     # :8000
+make dev-ingest   # :8001
+make dev-query    # :8002
 
-# Frontend setup (in another terminal)
+# Frontend (another terminal)
 cd frontend
 npm install
-npm run dev
+npm run dev       # :3000
 ```
 
-3. **Create a feature branch**
+3. **Create a feature branch from `develop`** (see [BRANCHING.md](BRANCHING.md))
 
 ```bash
+git checkout develop
 git checkout -b feature/your-feature-name
 ```
 
