@@ -88,7 +88,7 @@ func main() {
 	// Configure HTTP server
 	server := &http.Server{
 		Addr:         fmt.Sprintf("%s:%d", cfg.Server.Host, cfg.Server.Port),
-		Handler:      corsMiddleware(router, cfg.FRONTEND_URL),
+		Handler:      corsMiddleware(router, cfg.Server.FrontendURL),
 		ReadTimeout:  cfg.Server.ReadTimeout,
 		WriteTimeout: cfg.Server.WriteTimeout,
 	}

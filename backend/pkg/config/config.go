@@ -39,6 +39,7 @@ type ServerConfig struct {
 	WriteTimeout    time.Duration
 	ShutdownTimeout time.Duration
 	Environment     string // "development", "staging", "production"
+	FrontendURL     string // Allowed CORS origin for browser clients
 }
 
 // DatabaseConfig holds PostgreSQL configuration
@@ -99,6 +100,7 @@ func Load() (*Config, error) {
 			WriteTimeout:    getEnvAsDuration("WRITE_TIMEOUT", 15*time.Second),
 			ShutdownTimeout: getEnvAsDuration("SHUTDOWN_TIMEOUT", 30*time.Second),
 			Environment:     getEnv("ENVIRONMENT", "development"),
+			FrontendURL:     getEnv("FRONTEND_URL", "http://localhost:3000"),
 		},
 		Database: DatabaseConfig{
 			Host:            getEnv("DB_HOST", "localhost"),

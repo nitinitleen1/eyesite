@@ -42,16 +42,29 @@ export class Eyesite {
             autoCapture: config.autoCapture ?? true,
             apiKey: config.apiKey,
         };
+        this.sessionUuid = config.sessionUuid || null;
     }
 
     /**
      * Create a new session
      */
     async createSession(name?: string): Promise<string> {
-        // TODO: Implement session creation via API
-        const sessionId = `session_${Date.now()}`;
-        this.sessionUuid = sessionId;
-        return sessionId;
+        const response = await fetch(`${this.config.endpoint}/v1/sessions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-Key': this.config.apiKey,
+            },
+            body: JSON.stringify({ name }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to create session: ${await response.text()}`);
+        }
+
+        const session = await response.json();
+        this.sessionUuid = session.uuid;
+        return session.uuid;
     }
 
     /**

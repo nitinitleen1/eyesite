@@ -29,11 +29,12 @@
   - [x] Token usage charts (empty state)
   - [x] Provider distribution chart (empty state)
 
-- [ ] **Query Service**
-  - [ ] Session analytics endpoints
-  - [ ] Interaction search/filter
-  - [ ] Cost aggregation queries
-  - [ ] Export functionality (CSV, JSON)
+- [x] **Query Service**
+  - [x] Session analytics endpoints
+  - [x] Interaction search/filter
+  - [x] Cost aggregation queries
+  - [x] Export functionality (CSV, JSON)
+  - [x] JWT auth + workspace membership checks on all endpoints
 
 ### 🟡 Medium Priority - Enhancement
 
@@ -45,20 +46,21 @@
   - [x] Write SDK documentation
   - [ ] Publish to npm (when ready)
 
-- [ ] **API Key Management (Complete)**
-  - [ ] Implement ListAPIKeys handler
-  - [ ] Implement CreateAPIKey handler
-  - [ ] Implement RevokeAPIKey handler
+- [x] **API Key Management (Complete)**
+  - [x] Implement ListAPIKeys handler
+  - [x] Implement CreateAPIKey handler
+  - [x] Implement RevokeAPIKey handler
   - [ ] Add API key rotation
-  - [ ] API key usage tracking
+  - [x] API key usage tracking (last_used_at on ingest)
+  - [x] API key enforcement on ingest service (X-API-Key, revocation/expiry honored)
 
-- [ ] **Workspace Management (Complete)**
-  - [ ] ListWorkspaces handler
-  - [ ] CreateWorkspace handler
-  - [ ] UpdateWorkspace handler
-  - [ ] DeleteWorkspace handler
+- [x] **Workspace Management (Complete)**
+  - [x] ListWorkspaces handler
+  - [x] CreateWorkspace handler
+  - [x] UpdateWorkspace handler
+  - [x] DeleteWorkspace handler
   - [ ] Member invitation system
-  - [ ] Role-based permissions
+  - [x] Role-based permissions (owner/admin checks on update, delete, key revoke)
 
 - [ ] **Provider Enhancements**
   - [ ] Add more providers (Cohere, Mistral, etc.)
@@ -159,19 +161,21 @@
 - [x] Frontend foundation ✅
 - [x] Basic dashboard ✅
 - [x] TypeScript SDK ✅
-- [ ] Query service (Next)
-- [ ] Complete workspace/API key management (Next)
+- [x] Query service ✅
+- [x] Complete workspace/API key management ✅
+- [x] Dashboard wired to real workspaces (sessions, API keys, settings UI) ✅
+- [x] Sessions end-to-end (SDK createSession → ingest → dashboard) ✅
 
-**Completion: 75%**
-
----
-
-## 🎯 Next 3 Tasks (Immediate)
-
-1. **Create Telemetry Ingestion Service** - Start accepting OpenTelemetry data
-2. **Initialize Next.js Frontend** - Set up authentication and layout
-3. **Build Session Dashboard** - First visual interface for users
+**MVP complete.** Remaining work is post-MVP (OAuth, refresh tokens, WebSockets, member invitations, API key rotation, tests, CI/CD).
 
 ---
 
-*Updated: 2026-01-29 21:30*
+## 🎯 Next 3 Tasks (Post-MVP)
+
+1. **OAuth flows** - Google/GitHub login (handlers are routed but return 501)
+2. **Refresh tokens** - Real refresh token issuance/rotation (currently mirrors the access token)
+3. **Tests + CI** - Unit/integration tests and GitHub Actions
+
+---
+
+*Updated: 2026-06-12*

@@ -11,7 +11,6 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
-	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 
@@ -112,9 +111,9 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 			return errors.Database(err, "insert user")
 		}
 
-		// Create default workspace
+		// Create default workspace (random suffix keeps slugs unique across users)
 		workspaceUUID := uuid.New()
-		workspaceSlug := fmt.Sprintf("%s-workspace", strings.Split(user.Email, "@")[0])
+		workspaceSlug := fmt.Sprintf("%s-workspace-%s", slugify(strings.Split(user.Email, "@")[0]), ws8(uuid.New()))
 		
 		_, err = tx.ExecContext(ctx, `
 			INSERT INTO main.workspaces (uuid, name, owner_uuid, slug, created_at, updated_at)
@@ -263,54 +262,6 @@ func (h *AuthHandler) GetCurrentUser(w http.ResponseWriter, r *http.Request) {
 func (h *AuthHandler) UpdateCurrentUser(w http.ResponseWriter, r *http.Request) {
 	// TODO: Implement user update
 	h.respondError(w, errors.New("NOT_IMPLEMENTED", "User update not implemented yet", http.StatusNotImplemented))
-}
-
-// ListWorkspaces lists all workspaces for the current user
-func (h *AuthHandler) ListWorkspaces(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement workspace listing
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "Workspace listing not implemented yet", http.StatusNotImplemented))
-}
-
-// CreateWorkspace creates a new workspace
-func (h *AuthHandler) CreateWorkspace(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement workspace creation
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "Workspace creation not implemented yet", http.StatusNotImplemented))
-}
-
-// GetWorkspace returns a specific workspace
-func (h *AuthHandler) GetWorkspace(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement get workspace
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "Get workspace not implemented yet", http.StatusNotImplemented))
-}
-
-// UpdateWorkspace updates a workspace
-func (h *AuthHandler) UpdateWorkspace(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement workspace update
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "Workspace update not implemented yet", http.StatusNotImplemented))
-}
-
-// DeleteWorkspace deletes a workspace
-func (h *AuthHandler) DeleteWorkspace(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement workspace deletion
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "Workspace deletion not implemented yet", http.StatusNotImplemented))
-}
-
-// ListAPIKeys lists all API keys for a workspace
-func (h *AuthHandler) ListAPIKeys(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement API key listing
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "API key listing not implemented yet", http.StatusNotImplemented))
-}
-
-// CreateAPIKey creates a new API key
-func (h *AuthHandler) CreateAPIKey(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement API key creation
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "API key creation not implemented yet", http.StatusNotImplemented))
-}
-
-// RevokeAPIKey revokes an API key
-func (h *AuthHandler) RevokeAPIKey(w http.ResponseWriter, r *http.Request) {
-	// TODO: Implement API key revocation
-	h.respondError(w, errors.New("NOT_IMPLEMENTED", "API key revocation not implemented yet", http.StatusNotImplemented))
 }
 
 // AuthMiddleware validates JWT tokens and adds user to context
